@@ -7,14 +7,7 @@
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
-    <div id="container-relogio">
-        <div id="container-hours">
-            <div id="hours" class="time"></div>
-            <span class="hourSpan">:</span>
-            <div id="minutes" class="time"></div>
-            <span class="hourSpan">:</span>
-            <div id="seconds" class="time"></div>
-        </div>
+    <div id="container-clock">
         <div id="container-date">
             <div>
                 <span class="day">00</span>
@@ -24,6 +17,22 @@
                 <span class="year">0000</span>
             </div>
         </div>
+        <div id="container-hours">
+            <div id="hours" class="time"></div>
+            <span class="hourSpan">:</span>
+            <div id="minutes" class="time"></div>
+            <span class="hourSpan">:</span>
+            <div id="seconds" class="time"></div>
+        </div>
+        <div id="container-alarm">
+            <label for="inputAlarm">Adicione um alarme (em segundos)<br> Hora do Alarme: <span class="alarmHour"></span></label>
+            <input type="number" name="inputAlarm" id="inputAlarm">
+            <div class="buttons">
+                <button class="start">Iniciar</button>
+                <button class="stop">Parar</button>
+            </div>
+        </div>
+
     </div>
 
     <script src="script.js"></script>

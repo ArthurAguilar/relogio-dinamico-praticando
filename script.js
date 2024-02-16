@@ -6,7 +6,19 @@ screenDay = document.querySelector('.day')
 screenMonth = document.querySelector('.month')
 screenYear = document.querySelector('.year')
 
-function currentClock() {
+alarmHourScreen = document.querySelector('.alarmHour')
+inputAlarm = document.querySelector('#inputAlarm')
+btnStart = document.querySelector('.start')
+btnStop = document.querySelector('.stop')
+
+
+alarmeOnOff = false
+const data = new Date()
+let currentTimestamp = data.getTime()
+let valueInput = inputAlarm.value * 1000
+let alarmTime = valueInput + currentTimestamp
+
+function currentClock() { //Função pro relógio funcionar.
     const data = new Date()
 
     let currentyHour = data.getHours()
@@ -32,8 +44,47 @@ function currentClock() {
 
     screenYear.textContent = 
     currentyYear <10 ? '0' + currentyYear : currentyYear
+
+
+    if (alarmeOnOff == true) {
+        if (data.getTime() >= alarmTime) {
+            console.log('ok')
+        }
+    }
 }
 
-currentClock()
+function alarmClock() {
+    const data = new Date()
+    let currentTimestamp = data.getTime()
+    let valueInput = inputAlarm.value * 1000
+    let alarmTime = valueInput + currentTimestamp
+    let alarmHour = new Date(alarmTime)
+    
+    alarmHourScreen.innerHTML = 
+        alarmHour.getHours() < 10 ? "0" + alarmHour.getHours() + ":" : alarmHour.getHours() + ':'
 
-setInterval(currentClock, 1000)
+    alarmHourScreen.innerHTML += 
+        alarmHour.getMinutes() < 10 ? "0" + alarmHour.getMinutes() + ':' : alarmHour.getMinutes() + ':'
+
+    alarmHourScreen.innerHTML += 
+        alarmHour.getSeconds() < 10 ? "0" + alarmHour.getSeconds() : alarmHour.getSeconds()
+    
+}
+
+
+btnStart.addEventListener('click', () => {
+    alarmeOnOff = true
+    alarmClock()
+
+})
+
+btnStop.addEventListener('click', () => {
+    alarmeOnOff = false
+    alarmHourScreen.innerHTML = ''
+    inputAlarm.value = ''
+    inputAlarm.focus()
+})
+
+
+currentClock() //Função pro relógio iniciar ao abrir a página
+setInterval(currentClock, 1000) //Intervalo para manter o relógio atualizado, fazendo o que a cada 1000 (1s), execute a função do relógio.

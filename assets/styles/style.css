@@ -13,7 +13,7 @@ body {
     align-items: center;
 }
 
-#container-relogio {
+#container-clock {
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -27,8 +27,47 @@ body {
 #container-date {
     display: flex;
     justify-content: center;
-    margin-top: 15px;
+    margin-bottom: 10px;
     font-size: large;
+}
+
+#container-alarm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+input {
+    height: 25px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+button {
+    height: 30px;
+    width: 100px;
+    font-size: 1.05rem;
+    border-radius: 1rem;
+    border: .5px solid rgba(0, 0, 0, 0.584);
+    cursor:pointer;
+}
+
+button:hover {
+    transform: scale(1.03);
+}
+
+button.start {
+    background-color: rgba(33, 216, 33, 0.496);
+}
+
+button.stop {
+    background-color: rgba(255, 0, 0, 0.697);
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
 .time {
