@@ -13,10 +13,6 @@ btnStop = document.querySelector('.stop')
 
 
 alarmeOnOff = false
-const data = new Date()
-let currentTimestamp = data.getTime()
-let valueInput = inputAlarm.value * 1000
-let alarmTime = valueInput + currentTimestamp
 
 function currentClock() { //Função pro relógio funcionar.
     const data = new Date()
@@ -46,18 +42,21 @@ function currentClock() { //Função pro relógio funcionar.
     currentyYear <10 ? '0' + currentyYear : currentyYear
 
 
-    if (alarmeOnOff == true) {
-        if (data.getTime() >= alarmTime) {
-            console.log('ok')
-        }
+    if (alarmeOnOff && data.getTime() >= alarmTime) {
+        alarmeOnOff = false
+        alert("BEEEEP BEEEEP BEEEEP BEEEEP")
     }
+}
+
+function checkAlarm() {
+    const data = new Date()
+    let currentTimestamp = data.getTime()
+    let valueInput = inputAlarm.value * 1000
+    alarmTime = valueInput + currentTimestamp
 }
 
 function alarmClock() {
     const data = new Date()
-    let currentTimestamp = data.getTime()
-    let valueInput = inputAlarm.value * 1000
-    let alarmTime = valueInput + currentTimestamp
     let alarmHour = new Date(alarmTime)
     
     alarmHourScreen.innerHTML = 
@@ -68,12 +67,12 @@ function alarmClock() {
 
     alarmHourScreen.innerHTML += 
         alarmHour.getSeconds() < 10 ? "0" + alarmHour.getSeconds() : alarmHour.getSeconds()
-    
+   
 }
-
 
 btnStart.addEventListener('click', () => {
     alarmeOnOff = true
+    checkAlarm()
     alarmClock()
 
 })
@@ -84,7 +83,6 @@ btnStop.addEventListener('click', () => {
     inputAlarm.value = ''
     inputAlarm.focus()
 })
-
 
 currentClock() //Função pro relógio iniciar ao abrir a página
 setInterval(currentClock, 1000) //Intervalo para manter o relógio atualizado, fazendo o que a cada 1000 (1s), execute a função do relógio.
